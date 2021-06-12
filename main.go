@@ -55,7 +55,7 @@ const homeHTML = `<!DOCTYPE html>
 
 			conn.onopen = () => {
 				pc.createOffer({offerToReceiveVideo: true, offerToReceiveAudio: true}).then(offer => {
-					pc.setLocalDescription(offer)
+					// pc.setLocalDescription(offer)
 					conn.send(JSON.stringify({event: 'offer', data: JSON.stringify(offer)}))
 				})
 			}
