@@ -29,7 +29,8 @@ const homeHTML = `<!DOCTYPE html>
 		</div>
 
 		<script>
-			let conn = new WebSocket('ws://' + window.location.host + '/ws')
+			const socketType = (location.protocol === 'https:') ? 'wss' : 'ws';
+			let conn = new WebSocket(socketType + '://' + window.location.host + '/ws')
 			let pc = new RTCPeerConnection()
 
 			window.seekClick = () => {
