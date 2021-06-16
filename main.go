@@ -31,7 +31,12 @@ const homeHTML = `<!DOCTYPE html>
 		<script>
 			const socketType = (location.protocol === 'https:') ? 'wss' : 'ws';
 			let conn = new WebSocket(socketType + '://' + window.location.host + '/ws')
-			let pc = new RTCPeerConnection()
+			let pc = new RTCPeerConnection({
+				iceServers: [
+					{ urls: 'stun:stun.stunprotocol.org:3478' },
+					{ urls: 'stun:stun.l.google.com:19302' }
+				]
+			})
 
 			window.seekClick = () => {
 				conn.send(JSON.stringify({event: 'seek', data: document.getElementById('seekTime').value}))
